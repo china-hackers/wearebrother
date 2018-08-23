@@ -21,7 +21,7 @@ $config = [
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'Q-TAjtqKlLrK2nQLbeDDHBI00UPsApCB',
+            'cookieValidationKey' => 'LK-TAjtqKlLrK2nQLbeDDHBI00UPsApCB',
         ],
         'user' => [
             'class'=>'yii\web\User',
@@ -53,7 +53,7 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
-            'suffix'=>'.html',
+            #'suffix'=>'.html',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [

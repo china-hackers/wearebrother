@@ -59,8 +59,8 @@ class Module extends \yii\base\Module
         Yii::$container->set('mdm\admin\components\Configs',
             [
                 'db' => 'customDb',
-                'menuTable' => 'admin_menu',
-                'userTable' => 'admin_user',
+                'menuTable' => '{{%admin_menu}}',
+                'userTable' => '{{%admin_user}}',
             ]
         );
     }
