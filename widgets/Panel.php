@@ -6,10 +6,10 @@ use Yii;
 
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2016/12/10
  * Time: 14:33
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 class Panel extends Widget
 {

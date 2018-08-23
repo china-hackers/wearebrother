@@ -1,10 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2017/1/3
  * Time: 14:55
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 /** @var $this yii\web\View */
 $this->registerCss('.box-body h1 {display:none}');

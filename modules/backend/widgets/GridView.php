@@ -10,10 +10,10 @@ use Yii;
 use app\modules\backend\grid\DataColumn;
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2017/1/5
  * Time: 10:56
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 class GridView extends YiiGridView
 {

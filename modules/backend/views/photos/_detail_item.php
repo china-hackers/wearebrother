@@ -1,10 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2016/12/25
  * Time: 15:39
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 /* @var $model \app\models\PhotosDetail */
 /* @var $this \yii\web\View*/

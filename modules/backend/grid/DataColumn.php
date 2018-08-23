@@ -7,10 +7,10 @@ use yii\base\Model;
 use kartik\date\DatePicker;
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2017/1/16
  * Time: 12:48
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 class DataColumn extends YiiDataColumn
 {

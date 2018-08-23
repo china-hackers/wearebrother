@@ -2,10 +2,10 @@
 
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2017/2/13
  * Time: 14:13
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 namespace app\components\behaviors;
 

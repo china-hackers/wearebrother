@@ -4,10 +4,10 @@ use app\models\Content;
 
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2017/5/29
  * Time: 12:17
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 class  ContentCount
 {

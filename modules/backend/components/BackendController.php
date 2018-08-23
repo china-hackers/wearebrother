@@ -6,10 +6,10 @@ use Yii;
 
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2016/12/7
  * Time: 15:11
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 class BackendController extends Controller
 {

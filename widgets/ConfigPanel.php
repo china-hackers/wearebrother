@@ -5,10 +5,10 @@ use yii\base\ErrorException;
 use app\models\Config;
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2016/12/10
  * Time: 14:16
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 class ConfigPanel extends Panel
 {

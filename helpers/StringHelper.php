@@ -3,10 +3,10 @@ namespace app\helpers;
 use yii\helpers\StringHelper as BaseStringHelper;
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2016/12/12
  * Time: 22:37
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 class StringHelper extends BaseStringHelper
 {

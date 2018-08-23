@@ -1,10 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: david
+ * Author: Leonidax
  * Date: 2016/12/7
  * Time: 15:00
- * Email:liyongsheng@meicai.cn
+ * Email:wap@iamlk.cn
  */
 $UEditor = require(__DIR__ . '/config/UEditor.php');
 return [
