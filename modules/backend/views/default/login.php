@@ -45,5 +45,5 @@ $fieldOptions3 = [
     <?php ActiveForm::end(); ?>
 </div>
 <div id="footer">
-    技术支持 Powered by <a href="http://www.iamlk.cn/" target="_blank" title="LK工作室">LK工作室</a>
+    技术支持 Powered by <a href="<?= \Yii::$app->params['authorUrl'] ?>" target="_blank" title="<?= \Yii::$app->params['author'] ?>"><?= \Yii::$app->params['author'] ?></a>
 </div>

@@ -1,7 +1,9 @@
 <?php 
  return array (
-  'appName' => 'YiiCms企业管理系统',
+  'appName' => '北川卫计委信息管理系统',
   'logo' => '@web/images/logo.png',
+  'author' => '四川蓝色港湾',
+  'authorUrl' => 'http://www.myblue.cn/',
   'keywords' => '',
   'description' => '',
   'cacheDuration' => '-1',
