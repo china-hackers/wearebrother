@@ -1,32 +1,25 @@
-<?php
+<!DOCTYPE HTML>
+<html dir="ltr" lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+    <title><?= Yii::$app->name ?></title>
 
-use yii\helpers\Html;
-use app\modules\backend\assets\BackendAsset;
+    <!--- CSS --->
+    <link rel="stylesheet" href="/login/style.css" type="text/css" />
 
-BackendAsset::register($this);
-?>
-<?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-    </head>
-    <body class="login-page">
-    <?php $this->beginBody() ?>
 
-    <div class="wrap">
-        <div class="container">
-            <?= $content ?>
-        </div>
-    </div>
-    <?php $this->endBody() ?>
-    </body>
-    </html>
-<?php $this->endPage() ?>
+    <!--- Javascript libraries (jQuery and Selectivizr) used for the custom checkbox --->
+
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script type="text/javascript" src="/login/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="/login/selectivizr.js"></script>
+    <noscript><link rel="stylesheet" href="/login/fallback.css" /></noscript>
+    <![endif]-->
+
+</head>
+
+<body>
+<?= $content ?>
+</body>
+</html>

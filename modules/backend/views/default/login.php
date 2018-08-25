@@ -16,44 +16,34 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::$app->name;
 $fieldOptions1 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
+    'options' => ['class' => 'username-field'],
+    'template' => "{input}"
 ];
 
 $fieldOptions2 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
+    'options' => ['class' => 'password-field'],
+    'template' => "{input}<!--span class='glyphicon glyphicon-lock form-control-feedback'></span-->"
+];
+$fieldOptions3 = [
+        'options' => ['class'=>'']
 ];
 ?>
-<div class="site-login login-box">
-    <div class="login-logo">
-        <a href="#"><b><?= Html::encode($this->title) ?></b></a>
-    </div>
-    <div class="login-box-body">
 
-        <?php $form = ActiveForm::begin([
-            'id' => 'login-form',
-            'enableClientValidation' => false,
-        ]); ?>
-
-        <?= $form->field($model, 'username', $fieldOptions1)->label(false)->textInput(['autofocus' => true]) ?>
-
-        <?= $form->field($model, 'password', $fieldOptions2)->label(false)->passwordInput() ?>
-
-        <div class="row">
-            <div class="col-xs-8">
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-            </div>
-            <!-- /.col -->
-            <div class="col-xs-4">
-                <?= Html::submitButton('登录', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
-            </div>
-            <!-- /.col -->
-        </div>
-        <?php ActiveForm::end(); ?>
-
-        <div class="social-auth-links">
-            You may login with <strong>demo/demo</strong>.<br>
-        </div>
-    </div>
+<div id="container">
+    <?php $form = ActiveForm::begin([
+        'id' => 'login-form',
+        'enableClientValidation' => false,
+    ]); ?>
+    <div class="login"><?= Yii::$app->name ?></div>
+    <div class="username-text">登录用户:</div>
+    <div class="password-text">登录密码:</div>
+    <?= $form->field($model, 'username',$fieldOptions1)->label(false)->textInput(['autofocus' => true]) ?>
+    <?= $form->field($model, 'password',$fieldOptions2)->label(false)->passwordInput() ?>
+    <?= $form->field($model, 'rememberMe',$fieldOptions3)->checkbox(['value'=>1,'template'=>"{input}\n{beginLabel}\n{labelTitle}\n{endLabel}"]); ?>
+    <div class="forgot-usr-pwd">Forgot <a href="#">username</a> or <a href="#">password</a>?</div>
+    <?= Html::submitInput('登录') ?>
+    <?php ActiveForm::end(); ?>
+</div>
+<div id="footer">
+    技术支持 Powered by <a href="http://www.iamlk.cn/" target="_blank" title="LK工作室">LK工作室</a>
 </div>
