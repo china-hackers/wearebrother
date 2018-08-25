@@ -728,12 +728,12 @@ class BaseHtml
     {
         $options['checked'] = (bool) $checked;
         $value = array_key_exists('value', $options) ? $options['value'] : '1';
-        if (isset($options['uncheck'])) {
+        if ($options['checked']) {
+            $hidden = '';
+        } else {
             // add a hidden field so that if the checkbox is not selected, it still submits a value
             $hidden = static::hiddenInput($name, $options['uncheck']);
             unset($options['uncheck']);
-        } else {
-            $hidden = '';
         }
         if (isset($options['label'])) {
             $label = $options['label'];

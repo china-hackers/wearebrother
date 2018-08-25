@@ -226,6 +226,7 @@ class ActiveField extends Component
      */
     public function begin()
     {
+        if(empty($this->options['class'])) return '';
         if ($this->form->enableClientScript) {
             $clientOptions = $this->getClientOptions();
             if (!empty($clientOptions)) {
@@ -256,6 +257,7 @@ class ActiveField extends Component
      */
     public function end()
     {
+        if(empty($this->options['class'])) return '';
         return Html::endTag(ArrayHelper::keyExists('tag', $this->options) ? $this->options['tag'] : 'div');
     }
 
