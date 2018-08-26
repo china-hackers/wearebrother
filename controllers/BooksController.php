@@ -12,13 +12,13 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\Content;
-use app\models\News;
+use app\models\Books;
 use yii\data\ActiveDataProvider;
 use Yii;
 use yii\web\NotFoundHttpException;
 use app\components\AppController as Controller;
 
-class NewsController extends Controller
+class BooksController extends Controller
 {
     /**
      * 相册详情
@@ -65,13 +65,13 @@ class NewsController extends Controller
     public function actionList()
     {
         $categoryId = Yii::$app->request->get('category-id');
-        $query = News::find()->where(['status'=>News::STATUS_ENABLE]);
+        $query = Books::find()->where(['status'=>Books::STATUS_ENABLE]);
         if($categoryId){
             $query->andWhere(['category_id'=>$categoryId]);
             $category = Category::findOne($categoryId);
         }else{
             $category = new Category();
-            $category->type = News::$currentType;
+            $category->type = Books::$currentType;
         }
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
@@ -82,7 +82,7 @@ class NewsController extends Controller
 
         return $this->render('list', [
             'category'=>$category,
-            'searchModel' => new News(),
+            'searchModel' => new Books(),
             'dataProvider' => $dataProvider
         ]);
     }

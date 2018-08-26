@@ -36,6 +36,9 @@ class Content extends AppActiveRecord
     const TYPE_DOWNLOADS =3;
     /** 照片相册 */
     const TYPE_PHOTOS =4;
+    /** 图书馆 */
+    const TYPE_BOOKS =5;
+
 
     /** @var array  */
     static public $types = [
@@ -43,6 +46,7 @@ class Content extends AppActiveRecord
         self::TYPE_PRODUCTS=>'产品',
         self::TYPE_DOWNLOADS=>'下载',
         self::TYPE_PHOTOS=>'照片',
+        self::TYPE_BOOKS=>'图书馆',
     ];
 
     /**
@@ -114,6 +118,7 @@ class Content extends AppActiveRecord
      */
     static public $typeStrings = [
         self::TYPE_NEWS=>'news',
+        self::TYPE_BOOKS=>'books',
         self::TYPE_PRODUCTS=>'products',
         self::TYPE_DOWNLOADS=>'downloads',
         self::TYPE_PHOTOS=>'photos',
