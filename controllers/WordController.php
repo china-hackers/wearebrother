@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Dict;
+use app\models\Word;
 use app\components\AppController as Controller;
 
 class WordController extends Controller
@@ -21,9 +21,16 @@ class WordController extends Controller
     }
 
     public function actionTest(){
-        $w = urlencode('CHINA');
-        $url = "http://dict-co.iciba.com/api/dictionary.php?type=json&w=$w&key=9F153B01D3161642CB56C1BB78D4E50E";
-        echo file_get_contents($url);
+        $data = file_get_contents('./1.html');
+        $parm = '/<\/div>(\s*?)<\/div>(\s*?)<\/div>([\s\S]{1,})/';
+        $matches = [];
+        preg_match($parm, $data, $matches);
+        print_r($matches);
+
+    }
+
+    public function actionError($w){
+        echo 'Sorry, we are not ready~';
     }
 
     /**
@@ -34,7 +41,7 @@ class WordController extends Controller
     public function actionIndex($w='')
     {
         $data = [];
-        if($w) $data = Dict::searchDict($w);
+        if($w) $data = Word::searchWord($w);
         return $this->renderPartial('index', [
             'data' => $data
         ]);
