@@ -24,103 +24,102 @@ if (isset($this->params['adList'])) {
     }
 }
 $brandLabel = Yii::$app->name;
-if(!empty(Yii::$app->params['logo'])){
-    $brandLabel = '<img src="'.Yii::getAlias(Yii::$app->params['logo']).'"/>';
-}
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) . '-' . Yii::$app->name ?></title>
-    <?php $this->head() ?>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?baf532329283c0cae060310499633101";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-        (function(){
-            var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?44fe98c387976b344e710998b9ca68bb":"https://jspassport.ssl.qhimg.com/11.0.1.js?44fe98c387976b344e710998b9ca68bb";
-            document.write('<script src="' + src + '" id="sozz"><\/script>');
-        })();
-    </script>
+    <title><?=$this->title?>-<?=$brandLabel?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" /><!--只是或者请求的消息不能缓存-->
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><!--强制让文档与设备的宽度保持 1:1 ；
+    文档最大的宽度比列是1.0（ initial-scale 初始刻度值和 maximum-scale 最大刻度值）；user-scalable 定义用户是否可以手动缩放（ no 为不缩放），使页面固定设备上面的大小；-->
+    <meta name="apple-mobile-web-app-capable" content="yes" /><!--网站开启对 web app 程序的支持-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" /><!--（改变顶部状态条的颜色）-->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="/js/jquery.dlmenu.js"></script>
+    <script src='/js/hhSwipe.js' type="text/javascript"></script>
 </head>
-<body  class="skin-blue fixed">
-<?php $this->beginBody() ?>
-<div class="wrap">
-    <div class="main-header">
-        <?php NavBar::begin([
-            'brandLabel' => $brandLabel,
-            'brandUrl' => Yii::$app->homeUrl,
-            'options' => [
-                'class' => 'navbar navbar-inverse navbar-static-top navbar-'. ArrayHelper::getValue($this->params, 'themeColor', 'blue'),
-            ],
-        ]);
-        echo Nav::widget(json_decode(Yii::$app->params['nav'], true));
-        ?>
-        <?php $form = ActiveForm::begin(['method' => 'get', 'action' => ['site/search'], 'options' => ['class' => 'navbar-form navbar-right', 'role' => "search"]]); ?>
-        <input type="text" class="form-control input-lg" id="navbar-search-input"
-               value="<?= isset($this->params['keyword']) ? $this->params['keyword'] : '' ?>"
-               placeholder="输入关键字搜索"
-               name="keyword"
-        />
-        <?php ActiveForm::end(); ?>
-        <?php NavBar::end(); ?>
-    </div>
-    <div class="container" style="margin-top: 15px">
-        <?= Carousel::widget([
-            'options'=>['class'=>'carousel slide', 'data-ride'=>"carousel"],
-            'items' => $carouselItems,
-            'controls'=>['<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>',
-                '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>'],
-        ])?>
-    </div>
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
-    </div>
-    <div class="container">
-        <?= \app\widgets\Hook::widget(['configName'=>'gongyi']); ?>
-    </div>
-</div>
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">&copy; YiiCms <?= date('Y') ?> 版权所有 侵权必究</div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-                <ul>
-                    <li><a href="<?=Url::to(['/backend'])?>" target="_blank">后台演示</a></li>
-                    <li><a href="http://git.oschina.net/templi/yiicms" target="_blank">源码下载</a></li>
-                    <li><a href="https://github.com/yongshengli/yiicms" target="_blank">github下载</a></li>
+<body>
+<div class="wrap_box">
+    <!--头部部分开始-->
+    <div class="nav_box">
+        <a class="back_but" href=""><img src="/images/home_icon.png"/></a>
+        <p class="nav_title"><?=$this->title?></P>
+        <div class="menu">
+            <!--<img class="menu_but" src="images/menu_icon.png"/>-->
+            <div id="dl-menu" class="dl-menuwrapper">
+                <button id="dl-menu-button">Open Menu</button>
+                <ul class="dl-menu">
+                    <li><a href="/">网站首页</a></li>
+                    <li><a class="sub_menu" href="">业务资讯</a>
+                        <ul class="dl-submenu">
+                            <li class="dl-back"><a href="#">返回上一级</a></li>
+                            <?php foreach($this->params['cates'] as $cate):?>
+                            <li><a href="/site/list/id/<?=$cate->id?>"><?=$cate->name?></a></li>
+                            <?php endforeach;?>
+                        </ul>
+                    </li>
+                    <li><a href="/site/contact">联系我们</a></li>
+                    <li><a href="/site/about">关于我们</a></li>
+                    <li><a href="/site/feedback">留言板</a></li>
                 </ul>
             </div>
-            <div class="col-lg-3">
-                友情链接
-                <?=\app\widgets\Blogroll::widget()?>
-            </div>
-            <div class="col-lg-3">
-                QQ群:248898849
-            </div>
-            <div class="col-lg-3">
-                <p>技术支持<a href="http://www.zbeijing.com.cn">在北京网络科技</a> <?= \app\widgets\Hook::widget(['configName'=>'tongji']); ?></p>
-            </div>
+            <script type="text/javascript">
+                $(function(){
+                    $( '#dl-menu' ).dlmenu();
+                });
+            </script>
         </div>
     </div>
-</footer>
-<?php $this->endBody() ?>
-<?= \app\widgets\Hook::widget(['configName'=>'tongji']); ?>
+    <!--头部部分结束-->
+    <!--banner图开始-->
+    <div class="addWrap">
+        <div class="swipe" id="mySwipe">
+            <div class="swipe-wrap">
+                <?php foreach($this->params['ads'] as $ad):?>
+                <div><a href="<?=$ad->link?>"><img class="img-responsive" src="<?=$ad->image?>"/></a></div>
+                <?php endforeach;?>
+            </div>
+        </div>
+        <!--按转换按钮开始-->
+        <ul id="position">
+            <?php foreach($this->params['ads'] as $i => $ad):?>
+            <li <?php if($i==0) echo 'class="cur"'; ?> ></li>
+            <?php endforeach; ?>
+        </ul>
+        <!--按转换按钮结束-->
+    </div>
+    <script type="text/javascript">
+        var bullets = document.getElementById('position').getElementsByTagName('li');
+        var banner = Swipe(document.getElementById('mySwipe'), {
+            auto: 4000,
+            continuous: true,
+            disableScroll:false,
+            callback: function(pos) {
+                var i = bullets.length;
+                while (i--) {
+                    bullets[i].className = ' ';
+                }
+                bullets[pos].className = 'cur';
+            }
+        })
+    </script>
+    <!--banner结束-->
+    <?= $content ?>
+    <!--内容结束-->
+    <!--页尾开始-->
+    <div class="footer_box">
+        <a href="/"><img src="/images/fot_icon1.png"/>首页</a>
+        <a href="/site/feedback"><img src="/images/fot_icon3.png"/>留言板</a>
+        <a href="/site/about"><img src="/images/fot_icon2.png"/>关于我们</a>
+        <a href="/site/contact"><img src="/images/fot_icon4.png"/>联系我们</a>
+    </div>
+    <!--页尾结束-->
+</div>
 </body>
 </html>
 <?php $this->endPage() ?>

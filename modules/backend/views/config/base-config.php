@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'keywords')->textarea() ?>
                 </div>
                 <div class="col-sm-6">
-                    <?= $form->field($model, 'description')->textarea() ?>
+                    <?= $form->field($model, 'nav')->textarea() ?>
                 </div>
             </div>
             <div class="row">
@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ->textInput() ?>
                 </div>
             </div>
-            <?= $form->field($model, 'nav')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
             <div class="form-group">
                 <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>

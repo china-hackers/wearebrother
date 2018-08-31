@@ -57,14 +57,10 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                's/<w:.*+>'=>'word/index',
+                'site/list/id/<id:\d+>'=>'site/list',
+                'site/news/id/<id:\d+>'=>'site/news',
                 'index'=>'site/index',
-                'about'=>'site/about',
-                'contact'=>'site/contact',
-                'search'=>'site/search',
                 'page/<id:\d+>'=>'site/page',
-                '<controller:[\w-]+>/<id:\d+>'=>'<controller>/item',
-                '<controller:[\w-]+>/list/<category-id:\d+>'=>'<controller>/list',
                 '404'=>'site/search-children'
             ],
         ],

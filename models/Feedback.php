@@ -43,7 +43,6 @@ class Feedback extends AppActiveRecord
             ['email', 'email'],
             [['phone', 'email'], 'string', 'max' => 50],
             [['body'], 'string', 'max' => 255],
-            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -54,7 +53,7 @@ class Feedback extends AppActiveRecord
     {
         return [
             'id' => 'ID',
-            'subject' => '主题',
+            'subject' => '标题',
             'name' => '名字',
             'phone' => '电话',
             'email' => 'Email',

@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Category;
 use yii\helpers\Html;
 use app\modules\backend\widgets\GridView;
 use yii\grid\CheckboxColumn;
@@ -20,9 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li role="presentation"><?= Html::a('添加新闻', ['create']) ?></li>
         </ul>
         <div class="tab-content">
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-            <?= GridView::widget([
+            <?php $config = [
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
@@ -31,9 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'id',
                         'options' => ['style' => 'width:50px']
                     ],
-                    'title',
 //            'image',
-                    'description',
+                    [
+                          'attribute' => 'category_id',
+                        'format' => 'html',
+                        'value' => function($item){
+                            $model = Category::findOne($item['category_id']);
+                            if($model) return $model->name;
+                            else return '';
+                        }
+                    ],
+                    'title',
                     [
                         'attribute' => 'status',
                         'filter'=>$searchModel::$statusList,
@@ -61,7 +68,9 @@ $this->params['breadcrumbs'][] = $this->title;
 //             'updated_at:datetime',
                     ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}'],
                 ],
-            ]); ?>
+            ]; ?>
+
+            <?= GridView::widget($config); ?>
         </div>
     </div>
 </div>

@@ -11,4 +11,5 @@ $config = require(__DIR__ . '/../config/web.php');
 
 $app = new yii\web\Application($config);
 $app->language = Yii::$app->session->get('language', 'zh-CN');
+
 $app->run();

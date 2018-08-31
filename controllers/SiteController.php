@@ -2,13 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use app\models\Content;
+use app\models\News;
 use Yii;
 use app\components\AppController as Controller;
 use app\models\Feedback;
 use app\models\Config;
 use yii\data\ActiveDataProvider;
-use app\models\Products;
+use app\modules\backend\models\BaseConfig;
 use app\models\Ad;
 use yii\web\NotFoundHttpException;
 use app\models\Page;
@@ -32,6 +34,14 @@ class SiteController extends Controller
         ];
     }
 
+    public function init(){
+        parent::init();
+        $ads = Ad::find()->where('type=101')->all();
+        Yii::$app->view->params['ads'] = $ads;
+        $cates = Category::find()->where('type=1')->all();
+        Yii::$app->view->params['cates'] = $cates;
+    }
+
     /**
      * Displays homepage.
      *
@@ -39,57 +49,50 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $products = Products::find()->where(['status'=>Products::STATUS_ENABLE])->orderBy('id desc')->limit(12)->all();
-        $aboutUs = Config::find()->where(['name'=>'about_us'])->one();
+        $this->getView()->title = "北川卫生和计划生育委员会";
+        $cates = Category::find()->where('type=1')->all();
+        $list = News::find()->limit(5)->orderBy('id desc')->all();
+        $config = new BaseConfig();
+        $des = $config->description;
         return $this->render('index', [
-            'aboutUs'=>$aboutUs,
-            'products' => $products,
+            'cates' => $cates,
+            'list' => $list,
+            'des' => $des,
         ]);
     }
 
-    /**
-     * 修改语言
-     * @param string $language
-     * @return string
-     */
-    public function actionLanguage($language)
-    {
-        Yii::$app->session->set('language', $language);
-        $referrer = Yii::$app->request->getReferrer();
-        return $this->redirect($referrer?$referrer:Yii::$app->getHomeUrl());
+    public function actionNews($id){
+        $model = News::findOne($id);
+        $this->getView()->title = $model->title;
+        return $this->render('news',[
+           'model'=>$model
+        ]);
     }
-    /**
-     * Displays contact page.
-     *
-     * @return string
-     */
-    public function actionContact()
-    {
+
+    public function actionList($id){
+        $cate = Category::findOne($id);
+        $list = News::find()->where('category_id="'.$id.'"')->orderBy('id DESC')->limit(80)->all();
+        $this->getView()->title = $cate->name;
+        return $this->render('list',[
+           'list' => $list
+        ]);
+    }
+
+    public function actionFeedback(){
+        $this->getView()->title = '留言板';
         $model = new Feedback();
-        /** @var Config $config */
-        $config = Config::getByName('contact_us_page_id');
-        if($config) {
-            $page = Page::find()->where(['id' => $config->value])->one();
-        } else {
-            $page = null;
-        }
-        if(!empty($page->keywords)){
-            $this->view->registerMetaTag(['name'=>'keywords', 'content'=>$page->keywords],'keywords');
-        }
-        if(!empty($page->description)){
-            $this->view->registerMetaTag(['name'=>'description', 'content'=>$page->description], 'description');
-        }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if(isset(Yii::$app->params['adminEmail'])) {
-                $model->sendEmail(Yii::$app->params['adminEmail']);
+        if($_POST){
+            $model->attributes = $_POST['feedback'];
+            $model->created_at = time();
+            if($model->save()){
+                $message = '提交成功！';
+            }else{
+                $message = $model->getFirstErrors();
             }
-            Yii::$app->session->setFlash('contactFormSubmitted');
+            Yii::$app->session->setFlash('contactFormSubmitted',$message);
             return $this->refresh();
         }
-        return $this->render('contact', [
-            'model' => $model,
-            'page' =>$page
-        ]);
+        return $this->render('feedback');
     }
 
     /**
@@ -99,7 +102,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        $config = Config::getByName('about_us_page_id');
+        $config = Config::getByName('about_us');
         if(empty($config)){
             throw new NotFoundHttpException('页面不存在');
         }
@@ -110,24 +113,13 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionSearch()
+    public function actionContact()
     {
-        $keyword = Html::encode(strip_tags(Yii::$app->request->get('keyword')));
-        Content::$currentType = null;
-        $query = Content::find()
-            ->andFilterWhere(['or',['like', 'title', $keyword],['like', 'description', $keyword]])
-            ->andFilterWhere(['status'=>Content::STATUS_ENABLE]);
-//        echo $query->createCommand()->getRawSql();
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort'=>['defaultOrder'=>['id'=>SORT_DESC]],
-            'pagination' => ['pageSize'=>Yii::$app->params['pageSize']]
-        ]);
-        $this->view->params['keyword'] = $keyword;
-        return $this->render('search', [
-            'searchModel' => new Content(),
-            'dataProvider' => $dataProvider
-        ]);
+        $config = Config::getByName('contact_us');
+        if(empty($config)){
+            throw new NotFoundHttpException('页面不存在');
+        }
+        return $this->actionPage($config['value']);
     }
 
     /**
@@ -148,15 +140,10 @@ class SiteController extends Controller
         if(!empty($page->description)){
             $this->view->registerMetaTag(['name'=>'description', 'content'=>$page->description], 'description');
         }
-        return $this->render($page->template,[
-            'page'=>$page
+        $this->getView()->title = $page->title;
+        return $this->render('page',[
+            'model'=>$page
         ]);
-    }
-
-    public function actionSearchChildren()
-    {
-        $this->layout = false;
-        return $this->render('search-children');
     }
 
 }

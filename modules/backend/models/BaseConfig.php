@@ -101,7 +101,7 @@ class BaseConfig extends Model
             'appName'=>'网站名称',
             'homeTitle'=>'首页标题',
             'keywords'=>'网站关键字',
-            'description'=>'网站描述',
+            'description'=>'北川卫生和计划生育委员会',
             'adminEmail'=>'管理员邮箱',
             'pageSize'=>'每页显示元素数',
             'cacheDuration'=>'页面缓存时长',

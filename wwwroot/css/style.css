@@ -144,7 +144,7 @@ html {
        float:right;
 	   margin-top:.12rem;}	
 .menu_but{ display:block;
-           width:100%;}	\
+           width:100%;}
 @font-face {
 	font-family: 'icomoon';
 	src:url('../fonts/icomoon.eot');
@@ -161,7 +161,6 @@ html {
 .dl-menuwrapper {
 	width: 50%;
 	position: absolute;
-	top:1.2rem;
 	right:5%;
 	padding-top: 45px;
 	z-index:100;
@@ -258,7 +257,6 @@ html {
 	font-family: 'icomoon';
 	speak: none;
 	-webkit-font-smoothing: antialiased;
-	content: "\e000";
 }
 
 .dl-menuwrapper li.dl-back:after {
@@ -1215,13 +1213,13 @@ All this is done for any sub-level being entered.
            margin:0 auto;
 		   overflow:hidden;}
 .obj_box3 a{ display:block;
-             width:26%;
+             width:98%;
 			 float:left;
-			 margin:3.5%;
+			 margin:0.5%;
 			 height:.5rem;
 			 line-height:.5rem;
 			 background:url(../images/icon_bg.png) repeat-x;
-			 text-align:center;
+			 text-align:left;
 			 font-size:.26rem;}
 .leftIn1{ animation:leftIn1 4s;
          -webkit-animation:leftIn1 4s;
@@ -1367,7 +1365,7 @@ All this is done for any sub-level being entered.
       display:block;
 	  margin:.5rem auto;
 	  border:1px solid #cccccc;}
-.map img{ display:block;
+p >img{ display:block;
           width:100%;}	  
 /********联系我们结束********/
 
